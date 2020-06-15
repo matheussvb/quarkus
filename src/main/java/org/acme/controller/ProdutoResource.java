@@ -36,11 +36,11 @@ public class ProdutoResource {
     @Transactional
     public void alterarProdutoById(@PathParam("id") Long id,
                                    CadastrarProdutoDTO dto) {
-        Optional<PanacheEntityBase> p = Produto.findByIdOptional(id);
+        Optional<Produto> p = Produto.findByIdOptional(id);
         if (!p.isPresent())
             throw new RuntimeException("Produto não localizado!");
 
-        Produto produto = (Produto) p.get();
+        Produto produto = p.get();
         produto.nome = dto.nome;
         produto.valor = dto.valor;
         produto.persist();
